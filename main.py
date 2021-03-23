@@ -19,10 +19,12 @@ na = np.array(im)
 #defining resolution
 x_l = len(na[0])
 y_l = len(na)
-block = 600/x_l
+aspect_ratio = int(x_l/y_l)
+x_res = 600
+block = x_res/x_l
 
 #creating window
-surface = pygame.display.set_mode((600,600)) 
+surface = pygame.display.set_mode((x_res,int(x_res/aspect_ratio))) 
 color = (255,0,0) 
 running = True
 
