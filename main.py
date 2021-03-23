@@ -2,25 +2,21 @@ import pygame
 import numpy as np
 from PIL import Image
 from EditorUtils import Pixel as p
+from EditorUtils import *
 pygame.init()
-
-class Pixel:
-    def __init__(self,x,y):
-        self.pixel = pygame.Rect(x, y, block,block)
-    def get_pix(self):
-        return self.pixel
-
 pixels = []
 
 #sorting image into 100,100,3 array
-im = Image.open('image.png')
+im = Image.open('Blackhole.png')
 na = np.array(im)
 
 #defining resolution
 x_l = len(na[0])
 y_l = len(na)
-x_res = 600
-aspect_ratio = int(x_l/y_l)
+greater = max(x_l, y_l)
+x_res = get_window_resolution(x_l, y_l, greater)
+aspect_ratio = (x_l/y_l)
+print(aspect_ratio)
 block = x_res/x_l
 
 #creating window
@@ -33,7 +29,7 @@ for x in range(x_l):
     for y in range(y_l):
         pixels.append(p(x, y, block,na[y][x].tolist()))
 
-#drawing wach of the pixel in the list of pixels
+#drawing each of the pixel in the list of pixels
 for p in pixels:
     pygame.draw.rect(surface,p.get_color(),p.get_pix()) 
 
