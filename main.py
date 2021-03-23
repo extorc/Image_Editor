@@ -1,7 +1,7 @@
 import pygame 
 import numpy as np
 from PIL import Image
-
+from EditorUtils import Pixel as p
 pygame.init()
 
 class Pixel:
@@ -29,7 +29,7 @@ running = True
 #going through each pixel of the image and creating a pixel for it using the pixel class
 for x in range(x_l):
     for y in range(y_l):
-        pixels.append(Pixel(x* block , y * block).get_pix())
+        pixels.append(p(x, y, block).get_pix())
 
 #drawing wach of the pixel in the list of pixels
 for p in pixels:
