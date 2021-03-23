@@ -28,7 +28,7 @@ running = True
 
 #going through each pixel of the image and creating a pixel for it using the pixel class
 for x in range(x_l):
-    for y in range(x):
+    for y in range(y_l):
         pixels.append(Pixel(x* block , y * block).get_pix())
 
 #drawing wach of the pixel in the list of pixels
