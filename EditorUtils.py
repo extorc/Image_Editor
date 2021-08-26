@@ -1,4 +1,13 @@
 import pygame
+from tkinter import *
+from tkinter import filedialog
+
+def get_image_file():
+    tk=Tk()
+    file = filedialog.askopenfilename()
+    tk.destroy()
+    return file
+
 class Pixel:
     def __init__(self,x,y,block,color):
         self.pixel = pygame.Rect(x* block, y* block, block,block)
@@ -29,7 +38,7 @@ def get_window_resolution(x_l, y_l,greater, screenw, screenh):
                 elif greater < 100:
                     xres = 6*greater
                 else :xres = greater
-    else: 
+    else:
         print("cannot open images bigger than the open u have given")
         xres = 0
     return xres

@@ -1,14 +1,10 @@
-import pygame 
+import pygame
 import numpy as np
 import PIL.Image
 import EditorUtils as e
-from tkinter import *
-from tkinter import filedialog
+import time
 
-tk=Tk()
-file = filedialog.askopenfilename()
-tk.destroy()
-im = PIL.Image.open(file)
+im = PIL.Image.open(e.get_image_file())
 na = np.array(im)
 
 pygame.init()
@@ -33,8 +29,8 @@ aspect_ratio = (x_l/y_l)
 block = x_res/greater
 
 #creating window
-surface = pygame.display.set_mode((x_res,int(x_res/aspect_ratio))) 
-color = (255,0,0) 
+surface = pygame.display.set_mode((x_res,int(x_res/aspect_ratio)))
+color = (255,0,0)
 running = True
 
 #going through each pixel of the image and creating a pixel for it using the pixel class
@@ -44,12 +40,20 @@ for x in range(x_l):
 
 #drawing each of the pixel in the list of pixels
 for p in pixels:
-    pygame.draw.rect(surface,p.get_color(),p.get_pix()) 
-
+    pygame.draw.rect(surface,p.get_color(),p.get_pix())
+n = 0
 #main GameLoop
-while running:  
+while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+    if n <= 100:
+        for p in pixels:
+            pygame.draw.rect(surface,p.get_color(),p.get_pix())
+    else:
+        for p in pixels:
+            pygame.draw.rect(surface,[100,100,100],p.get_pix())
+    n += 1
+    print(n)
     pygame.display.update()
 pygame.display.flip()
