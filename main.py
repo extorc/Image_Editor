@@ -41,20 +41,16 @@ for x in range(x_l):
 #drawing each of the pixel in the list of pixels
 for p in pixels:
     pygame.draw.rect(surface,p.get_color(),p.get_pix())
-n = 0
 #main GameLoop
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    if n <= 30:
-        for p in pixels:
-            pygame.draw.rect(surface,p.get_color(),p.get_pix())
-    else:
-        for p in pixels:
-            p.set_color([100,100,100])
-            pygame.draw.rect(surface,p.get_color(),p.get_pix())
-    n += 1
-    print(n)
+    if pygame.mouse.get_pressed()[0]:
+        x = int(pygame.mouse.get_pos()[0]/block)
+        y = int(pygame.mouse.get_pos()[1]/block)
+        pixels[((x-1) * y_l) + y].set_color([0,255,0])
+    for p in pixels:
+        pygame.draw.rect(surface,p.get_color(),p.get_pix())
     pygame.display.update()
 pygame.display.flip()
