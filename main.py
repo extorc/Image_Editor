@@ -47,12 +47,13 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    if n <= 100:
+    if n <= 30:
         for p in pixels:
             pygame.draw.rect(surface,p.get_color(),p.get_pix())
     else:
         for p in pixels:
-            pygame.draw.rect(surface,[100,100,100],p.get_pix())
+            p.set_color([100,100,100])
+            pygame.draw.rect(surface,p.get_color(),p.get_pix())
     n += 1
     print(n)
     pygame.display.update()

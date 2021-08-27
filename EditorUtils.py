@@ -16,6 +16,8 @@ class Pixel:
         return self.pixel
     def get_color(self):
         return self.color
+    def set_color(self,color):
+        self.color = color
 
 def get_window_resolution(x_l, y_l,greater, screenw, screenh):
     xres : int
